@@ -1,5 +1,8 @@
 package chat;
-
+/**
+ *
+ * @author dhir4j
+ */
 public class Client 
 {
 

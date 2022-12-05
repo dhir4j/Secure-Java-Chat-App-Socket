@@ -1,11 +1,9 @@
 package chat;
+/**
+ *
+ * @author dhir4j
+ */
 
-
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

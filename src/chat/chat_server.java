@@ -1,13 +1,14 @@
 package chat;
-
+/**
+ *
+ * @author dhir4j
+ */
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class chat_server extends javax.swing.JFrame {
