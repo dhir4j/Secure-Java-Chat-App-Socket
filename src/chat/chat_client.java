@@ -20,7 +20,7 @@ public class chat_client extends javax.swing.JFrame {
     private String serverIP;
     private Socket connection;
     private int port = 6789;
-    private int secretKey = 0;
+    private String secretKey = "default";
     private String messageMSG;
     EncryDecry encyrDecry = new EncryDecry();
     
@@ -173,23 +173,20 @@ public class chat_client extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfKeyActionPerformed
-        String skey = tfKey.getText();
-        secretKey = Integer.parseInt(skey);
-        
+        secretKey = tfKey.getText();
     }//GEN-LAST:event_tfKeyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String sKey = tfKey.getText();
+        secretKey = tfKey.getText();
         String sMessage = jTextField1.getText();
         
-        if (sKey.equals("")  || onlyDigits(sKey)==false || Integer.valueOf(sKey)<1 ){
-        showMessageDialog(null, "Please Enter Key, Key should be in integer > 0");
+        if (secretKey.equals("")){
+        showMessageDialog(null, "Please Enter Key");
         }
         else if (sMessage.equals("")){
         showMessageDialog(null, "Please Enter Message");
         }        
         else{
-        secretKey = Integer.parseInt(sKey);
         sendMessage(jTextField1.getText());
 	jTextField1.setText("");
         }
@@ -223,7 +220,7 @@ public class chat_client extends javax.swing.JFrame {
     
     private void btnKeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKeyActionPerformed
         
-        if(secretKey == 0){
+        if(secretKey == "default"){
             showMessageDialog(null,"Use after Sending Messge");
         }
         else{
@@ -258,17 +255,16 @@ public class chat_client extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlainTextActionPerformed
 
     private void btnDecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecryptActionPerformed
-       String encryptedmsg = jTextField1.getText();
-        String sKey = tfKey.getText();
+        String encryptedmsg = jTextField1.getText();
+        secretKey = tfKey.getText();
         
-        if (sKey.equals("")  || onlyDigits(sKey)==false || Integer.valueOf(sKey)<1 ){
-        showMessageDialog(null, "Please Enter Key, Key should be in integer > 0");
+        if (secretKey.equals("") ){
+        showMessageDialog(null, "Please Enter Key");
         }
         else if(encryptedmsg.equals("")){
             showMessageDialog(null, "Please Enter Encrypted Text in Message box below");
         }
         else{
-            secretKey = Integer.parseInt(sKey);
             EncryDecry encyrDecry = new EncryDecry();
             messageMSG = encyrDecry.decrypt(encryptedmsg, secretKey);
 
@@ -318,29 +314,7 @@ public class chat_client extends javax.swing.JFrame {
               }
       }while(!message.equals("Client - END"));
     }
-  
-    
-    private boolean onlyDigits(String str)
-    {
-        // Traverse the string from
-        // start to end
-        int n = str.length();
-        for (int i = 0; i < n; i++) {
- 
-            // Check if character is
-            // not a digit between 0-9
-            // then return false
-            if (str.charAt(i) < '0'
-                || str.charAt(i) > '9') {
-                return false;
-            }
-        }
-          // If we reach here, that means
-          // all characters were digits.
-        return true;
-    }   
 
-  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
